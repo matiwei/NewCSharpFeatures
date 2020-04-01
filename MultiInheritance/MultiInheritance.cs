@@ -24,6 +24,7 @@ namespace MultiInheritance
     class MultiInheriting : A, B
     {
         //check with public access modifier - overrides Interfaces defaults even if running casted at interface
+        //check with internal access modifier - overrides only when called by original type        
         void WriteSomething()
         {
             System.Console.WriteLine($"Own Something");
@@ -39,6 +40,9 @@ namespace MultiInheritance
             (x as B).WriteSomething();
             B.Value = "Crazy code";
             (x as B).WriteSomething();
+
+            //works only when MultiInheriting's WriteSomething method has 'internal' access modifier
+            //x.WriteSomething();
 
             //It's possible to implement local functions in functions
             static void WriteSthA(A a)
